@@ -1,20 +1,18 @@
+import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
+import Dashboard from "./pages/Dashboard";
+import DrugInfo from "./pages/DrugInfo";
+
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="/drug/:id" element={<DrugInfo />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
