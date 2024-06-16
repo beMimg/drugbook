@@ -1,7 +1,11 @@
-import React from "react";
+import { Box, Typography } from "@mui/material";
 
 const Nav = () => {
-  return <div>Nav</div>;
+  return (
+    <Box>
+      <Typography>Nav</Typography>
+    </Box>
+  );
 };
 
 export default Nav;

@@ -1,7 +1,19 @@
-import React from "react";
+import { Box, Typography } from "@mui/material";
 
 const Footer = () => {
-  return <div>Footer</div>;
+  return (
+    <Box
+      component="footer"
+      sx={{
+        py: 2,
+        mt: "auto",
+        color: "black",
+        textAlign: "center",
+      }}
+    >
+      <Typography>Footer</Typography>
+    </Box>
+  );
 };
 
 export default Footer;
