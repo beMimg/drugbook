@@ -1,5 +1,4 @@
 import { AppBar, Box, Container, Toolbar, Typography } from "@mui/material";
-import React from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import Nav from "./Nav";
@@ -15,7 +14,7 @@ const Layout = () => {
           <Nav />
         </Toolbar>
       </AppBar>
-      <Container component="main" sx={{ flexGrow: 1, py: 3 }}>
+      <Container component="main" sx={{ flexGrow: 1, py: 3, height: 100 }}>
         <Outlet />
       </Container>
       <Footer />
