@@ -36,7 +36,7 @@ const SearchBar = () => {
   const handleOptionChange = (event: any, value: string | null) => {
     if (value) {
       // Use the value (Selected Option), to create a path to the route.
-      const path = `/drug/${value}`;
+      const path = `/drug/${value}?page=1`;
       navigate(path);
     }
   };
