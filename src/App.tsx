@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
-import DrugInfo from "./pages/DrugInfo";
+import ListOfDrugsByGenericName from "./pages/ListOfDrugsByGenericName";
 import "@fontsource/roboto/300.css"; // Light font weight
 import "@fontsource/roboto/400.css"; // Regular font weight
 import "@fontsource/roboto/500.css"; // Medium font weight
@@ -13,7 +13,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
-          <Route path="/drug/:id" element={<DrugInfo />} />
+          <Route
+            path="/drug/:genericName/:page"
+            element={<ListOfDrugsByGenericName />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
