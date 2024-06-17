@@ -33,8 +33,7 @@ const SearchBar = () => {
   const debounceFetchOptions = useCallback(debounce(fetchOptions, 300), []);
 
   // When one of the options is selected calls this function.
-  const handleOptionChange = (event: any) => {
-    const { value } = event.target;
+  const handleOptionChange = (event: any, value: string | null) => {
     if (value) {
       // Use the value (Selected Option), to create a path to the route.
       const path = `/drug/${value}`;
