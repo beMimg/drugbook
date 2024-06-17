@@ -1,6 +1,9 @@
 import axios from "axios";
 
-export const getDrugDetails = async (query: string, page: number) => {
+export const getListOfDrugsByGenericName = async (
+  query: string,
+  page: number
+) => {
   try {
     // encode the query, `NAPROXEN SODIUM` will not work, bewucase spaces are not directly supported in URL.
     // encodeURIComponent is a built-in javascript function to replace spaces with `%20`.

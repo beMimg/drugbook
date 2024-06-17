@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getDrugDetails } from "../api/getDrugDetails";
+import { getListOfDrugsByGenericName } from "../api/getDrugDetails";
 import { Box, Typography } from "@mui/material";
 
 const ListOfDrugsByGenericName = () => {
@@ -15,7 +15,10 @@ const ListOfDrugsByGenericName = () => {
     const getDrugListByGenericName = async () => {
       try {
         if (typeof genericName === "string") {
-          const list = await getDrugDetails(genericName, pageAsInteger);
+          const list = await getListOfDrugsByGenericName(
+            genericName,
+            pageAsInteger
+          );
           setDrugListByGenericName(list);
         }
       } catch (err) {
@@ -26,7 +29,6 @@ const ListOfDrugsByGenericName = () => {
     //name and page as dependency
   }, [genericName, page]);
 
-  console.log(drugListByGenericName);
   return (
     <Box display={"flex"} flexDirection={"column"}>
       <Typography>{page}</Typography>
