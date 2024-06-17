@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getListOfDrugsByGenericName } from "../api/getDrugDetails";
+import { getListOfDrugsByGenericName } from "../api/getListOfDrugsByGenericName";
 import { Box, Typography } from "@mui/material";
 
 const ListOfDrugsByGenericName = () => {
