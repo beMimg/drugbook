@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { getListOfDrugsByGenericName } from "../api/getListOfDrugsByGenericName";
 import { Box, Typography } from "@mui/material";
 
 const ListOfDrugsByGenericName = () => {
   const [errors, setErrors] = useState(false);
   const [drugListByGenericName, setDrugListByGenericName] = useState([]);
-  const { genericName, page } = useParams();
+  const { genericName } = useParams();
+  const location = useLocation();
 
-  // :page from URL is a string, we need to parse that to a number.
-  const pageAsInteger = parseInt(page!);
+  const getPageNumber = () => {
+    const searchParams = new URLSearchParams(location.search);
+    const page = searchParams.get("page");
+    return page ? parseInt(page) : 1; // parse the string to number and default to page 1 if not provided
+  };
+
+  const pageAsInteger = getPageNumber();
 
   useEffect(() => {
     const getDrugListByGenericName = async () => {
@@ -27,11 +33,11 @@ const ListOfDrugsByGenericName = () => {
     };
     getDrugListByGenericName();
     //name and page as dependency
-  }, [genericName, page]);
+  }, [genericName, pageAsInteger]);
 
   return (
     <Box display={"flex"} flexDirection={"column"}>
-      <Typography>{page}</Typography>
+      <Typography>{pageAsInteger}</Typography>
       {drugListByGenericName.map((drug: any) => (
         <Box display={"flex"} gap={3} flexDirection={"row"}>
           <Typography fontWeight={"900"}>
