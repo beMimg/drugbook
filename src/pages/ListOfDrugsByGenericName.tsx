@@ -1,30 +1,22 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { getListOfDrugsByGenericName } from "../api/getListOfDrugsByGenericName";
-import { Box, Typography } from "@mui/material";
+import { Box, Pagination, PaginationItem, Typography } from "@mui/material";
 
 const ListOfDrugsByGenericName = () => {
   const [errors, setErrors] = useState(false);
   const [drugListByGenericName, setDrugListByGenericName] = useState([]);
   const { genericName } = useParams();
+
   const location = useLocation();
-
-  const getPageNumber = () => {
-    const searchParams = new URLSearchParams(location.search);
-    const page = searchParams.get("page");
-    return page ? parseInt(page) : 1; // parse the string to number and default to page 1 if not provided
-  };
-
-  const pageAsInteger = getPageNumber();
+  const query = new URLSearchParams(location.search);
+  const page = parseInt(query.get("page") || "1", 10);
 
   useEffect(() => {
     const getDrugListByGenericName = async () => {
       try {
         if (typeof genericName === "string") {
-          const list = await getListOfDrugsByGenericName(
-            genericName,
-            pageAsInteger
-          );
+          const list = await getListOfDrugsByGenericName(genericName, page);
           setDrugListByGenericName(list);
         }
       } catch (err) {
@@ -33,11 +25,23 @@ const ListOfDrugsByGenericName = () => {
     };
     getDrugListByGenericName();
     //name and page as dependency
-  }, [genericName, pageAsInteger]);
+  }, [genericName, page]);
 
   return (
     <Box display={"flex"} flexDirection={"column"}>
-      <Typography>{pageAsInteger}</Typography>
+      <Pagination
+        page={page}
+        count={10}
+        renderItem={(item) => (
+          <PaginationItem
+            component={Link}
+            to={`/drug/${genericName}${
+              item.page === 1 ? "" : `?page=${item.page}`
+            }`}
+            {...item}
+          />
+        )}
+      />
       {drugListByGenericName.map((drug: any) => (
         <Box display={"flex"} gap={3} flexDirection={"row"}>
           <Typography fontWeight={"900"}>
