@@ -7,6 +7,7 @@ import DrugListTable from "../components/ListOfDrugs/DrugListTable";
 const ListOfDrugsByGenericName = () => {
   const [errors, setErrors] = useState(false);
   const [drugListByGenericName, setDrugListByGenericName] = useState([]);
+  const [totalPages, setTotalPages] = useState<number>();
   const { genericName } = useParams();
 
   const location = useLocation();
@@ -18,7 +19,8 @@ const ListOfDrugsByGenericName = () => {
       try {
         if (typeof genericName === "string") {
           const list = await getListOfDrugsByGenericName(genericName, page);
-          setDrugListByGenericName(list);
+          setDrugListByGenericName(list.list);
+          setTotalPages(list.totalPages);
         }
       } catch (err) {
         setErrors(true);
@@ -39,7 +41,7 @@ const ListOfDrugsByGenericName = () => {
     >
       <Pagination
         page={page}
-        count={10}
+        count={totalPages}
         renderItem={(item) => (
           <PaginationItem
             component={Link}
