@@ -14,6 +14,7 @@ const theme = createTheme({
     },
     text: {
       primary: "#333333", // Dark Gray for text
+      secondary: "#808080", // Light Gray for descriptions
     },
   },
 });

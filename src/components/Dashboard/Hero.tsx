@@ -32,7 +32,11 @@ const Hero = () => {
             </span>{" "}
             Knowledge
           </Typography>
-          <Typography fontWeight={"300"} color={"gray"} textAlign={"center"}>
+          <Typography
+            variant="h6"
+            color={"text.secondary"}
+            textAlign={"center"}
+          >
             Research, develop software, or access reliable pharmaceutical data
             with structured information for immediate insights and seamless
             integration.

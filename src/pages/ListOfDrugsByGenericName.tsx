@@ -34,7 +34,7 @@ const ListOfDrugsByGenericName = () => {
     <Box
       display={"flex"}
       flexDirection={"column"}
-      justifyContent={"space-evenly"}
+      justifyContent={"start"}
       alignItems={"center"}
       flexGrow={1}
       gap={3}
