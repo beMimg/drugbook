@@ -11,8 +11,8 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#4caf50" }}>
-      <Container>
+    <AppBar position="static" color={"primary"}>
+      <Container maxWidth={"xl"}>
         <Toolbar disableGutters>
           <Typography
             variant="h6"
