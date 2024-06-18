@@ -15,7 +15,7 @@ export const getListOfDrugsByGenericName = async (
     const offset = (page - 1) * limit;
 
     const response = await axios.get(
-      `https://api.fda.gov/drug/label.json?search=openfda.generic_name:"${encodedQuery}"&limit=${limit}&skip=${offset}`
+      `https://api.fda.gov/drug/label.json?search=openfda.generic_name.exact:"${encodedQuery}"&limit=${limit}&skip=${offset}`
     );
     return response.data.results;
   } catch (error) {
