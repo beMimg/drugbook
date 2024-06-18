@@ -28,15 +28,6 @@ const Nav = () => {
             <Button color="inherit" component={Link} to="/services">
               Services
             </Button>
-            <Button color="inherit" component={Link} to="/about">
-              About
-            </Button>
-            <Button color="inherit" component={Link} to="/contact">
-              Contact
-            </Button>
-            <Button color="inherit" component={Link} to="/login">
-              Login
-            </Button>
           </Box>
         </Toolbar>
       </Container>

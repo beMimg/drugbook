@@ -1,6 +1,6 @@
 import { Autocomplete, TextField } from "@mui/material";
 import { useState, useCallback } from "react";
-import { searchDrug } from "../api/searchDrugs";
+import { searchDrug } from "../../api/searchDrugs";
 import debounce from "lodash/debounce";
 import { useNavigate } from "react-router-dom";
 
