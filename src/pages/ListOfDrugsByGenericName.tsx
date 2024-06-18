@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { getListOfDrugsByGenericName } from "../api/getListOfDrugsByGenericName";
-import { Box, Pagination, PaginationItem, Typography } from "@mui/material";
+import { Box, Pagination, PaginationItem } from "@mui/material";
+import DrugListTable from "../components/ListOfDrugs/DrugListTable";
 
 const ListOfDrugsByGenericName = () => {
   const [errors, setErrors] = useState(false);
@@ -28,7 +29,14 @@ const ListOfDrugsByGenericName = () => {
   }, [genericName, page]);
 
   return (
-    <Box display={"flex"} flexDirection={"column"}>
+    <Box
+      display={"flex"}
+      flexDirection={"column"}
+      justifyContent={"space-evenly"}
+      alignItems={"center"}
+      flexGrow={1}
+      gap={3}
+    >
       <Pagination
         page={page}
         count={10}
@@ -42,15 +50,7 @@ const ListOfDrugsByGenericName = () => {
           />
         )}
       />
-      {drugListByGenericName.map((drug: any) => (
-        <Box display={"flex"} gap={3} flexDirection={"row"}>
-          <Typography fontWeight={"900"}>
-            {drug.openfda.generic_name[0]}
-          </Typography>
-          <p>{drug.openfda.brand_name[0]}</p>
-          <p>{drug.openfda.manufacturer_name[0]}</p>
-        </Box>
-      ))}
+      <DrugListTable drugListByGenericName={drugListByGenericName} />
     </Box>
   );
 };
