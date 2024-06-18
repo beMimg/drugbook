@@ -10,7 +10,7 @@ export const getListOfDrugsByGenericName = async (
     const encodedQuery = encodeURIComponent(query);
 
     // Get 20 items per fetching.
-    const limit = 20;
+    const limit = 10;
     // Pagination:
     const offset = (page - 1) * limit;
 
