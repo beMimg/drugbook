@@ -1,4 +1,6 @@
 import {
+  Box,
+  Link,
   Paper,
   Table,
   TableBody,
@@ -7,6 +9,7 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface Drug {
   openfda: {
@@ -26,6 +29,13 @@ interface DrugListByGenericNameProp {
 const DrugListTable = ({
   drugListByGenericName,
 }: DrugListByGenericNameProp) => {
+  const navigate = useNavigate();
+
+  const handleClick = (id: string) => {
+    const path = `/information/${id}`;
+    navigate(path);
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -41,7 +51,11 @@ const DrugListTable = ({
           {drugListByGenericName.map((drug: Drug) => (
             <TableRow
               key={drug.openfda.spl_id[0]}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              sx={{
+                "&:last-child td, &:last-child th": { border: 0 },
+                cursor: "pointer",
+              }}
+              onClick={() => handleClick(drug.openfda.spl_id[0])}
             >
               <TableCell component="th" scope="row">
                 {drug.openfda.generic_name
