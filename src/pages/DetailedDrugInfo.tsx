@@ -45,8 +45,11 @@ const DetailedDrugInfo = () => {
             item.value[0].key ? (
               <TextBox
                 title={item.key}
-                description={item.value.map((item2: any) => (
-                  <TextBox title={item2.key} description={item2.value} />
+                description={item.value.map((innerItem: any) => (
+                  <TextBox
+                    title={innerItem.key}
+                    description={innerItem.value}
+                  />
                 ))}
               />
             ) : (

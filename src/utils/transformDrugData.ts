@@ -1,5 +1,9 @@
 export const transformDrugData = (data: Object) => {
   return Object.entries(data).map(([key, value]) => {
+    let transformedKey = key.replaceAll("_", " ");
+    const firstLetterUppercase = transformedKey.charAt(0).toUpperCase();
+    const finalKey = firstLetterUppercase + transformedKey.substring(1);
+
     if (typeof value === "object" && !Array.isArray(value) && value !== null) {
       const valueArray = Object.entries(value).map(
         ([innerKey, innerValue]) => ({
@@ -8,12 +12,12 @@ export const transformDrugData = (data: Object) => {
         })
       );
       return {
-        key: key,
+        key: finalKey,
         value: valueArray,
       };
     } else {
       return {
-        key: key,
+        key: finalKey,
         value: value,
       };
     }
