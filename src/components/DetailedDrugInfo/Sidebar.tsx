@@ -1,23 +1,18 @@
 import { Box, List, ListItem, ListItemText } from "@mui/material";
 
-const sections = [
-  { id: "children", label: "Children" },
-  { id: "pregnancy", label: "Pregnancy" },
-  { id: "dosage", label: "Dosage" },
-  // Add more sections as needed
-];
-
-const Sidebar = () => {
+interface SidebarProps {
+  data: Array<any>;
+}
+const Sidebar = ({ data }: SidebarProps) => {
   return (
     <Box>
       <List>
-        {sections.map((section) => (
+        {data.map((section: { key: string; value: Array<any> }) => (
           <ListItem
-            key={section.id}
-            // selected={activeSection === section.id}
-            // onClick={() => onSectionClick(section.id)}
+          // selected={activeSection === section.id}
+          // onClick={() => onSectionClick(section.id)}
           >
-            <ListItemText primary={section.label} />
+            <ListItemText primary={section.key} />
           </ListItem>
         ))}
       </List>
