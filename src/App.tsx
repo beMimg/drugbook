@@ -14,7 +14,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route
-            path="/drug/:genericName"
+            path="/list/:genericName"
             element={<ListOfDrugsByGenericName />}
           />
         </Route>

@@ -45,7 +45,7 @@ const ListOfDrugsByGenericName = () => {
         renderItem={(item) => (
           <PaginationItem
             component={Link}
-            to={`/drug/${genericName}${
+            to={`/list/${genericName}${
               item.page === 1 ? "" : `?page=${item.page}`
             }`}
             {...item}
