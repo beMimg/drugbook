@@ -7,7 +7,7 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Slide from "@mui/material/Slide";
 import { Link } from "react-router-dom"; // Assuming you're using React Router for navigation
 import { Box, Button, Container } from "@mui/material";
-import medicinePillsWhite from "../../assets/images/medicine_pills_white.svg";
+import medicinePillsWhite from "../../assets/images/medicine-pills-white.svg";
 
 interface Props {
   window?: () => Window;
@@ -24,27 +24,39 @@ function HideOnScroll(props: Props) {
       <AppBar>
         <Container maxWidth={"xl"}>
           <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              component="div"
+            <Box
+              display={"flex"}
+              flexDirection={"row"}
+              gap={1}
               sx={{
                 flexGrow: 1,
                 textDecoration: "none",
                 color: "inherit",
-                display: "flex",
-                alignItems: "center",
                 gap: 1,
               }}
             >
               <img src={medicinePillsWhite} alt="" style={{ height: "24px" }} />
-              DRUGBOOK
-            </Typography>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  textDecoration: "none",
+                  color: "inherit",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+              >
+                DRUGBOOK
+              </Typography>
+            </Box>
             <Box sx={{ display: "flex", gap: 2 }}>
               <Button color="inherit" component={Link} to="/">
                 Home
               </Button>
-              <Button color="inherit" component={Link} to="/services">
-                Services
+              <Button color="inherit" component={Link} to="/about">
+                About
               </Button>
             </Box>
           </Toolbar>
@@ -56,10 +68,10 @@ function HideOnScroll(props: Props) {
 
 export default function HideAppBar(props: Props) {
   return (
-    <React.Fragment>
+    <>
       <CssBaseline />
       <HideOnScroll {...props} />
       <Toolbar />
-    </React.Fragment>
+    </>
   );
 }
