@@ -37,6 +37,7 @@ export const getListOfDrugsByGenericName = async (
     return {
       list: listOfDrugsByGenericName,
       totalPages: totalPages,
+      count: numberOfSameGenericNameDrug,
     };
   } catch (error) {
     console.error("Error fetching drug details:", error);

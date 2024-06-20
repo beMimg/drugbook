@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { getListOfDrugsByGenericName } from "../api/getListOfDrugsByGenericName";
-import { Box, Pagination, PaginationItem } from "@mui/material";
+import {
+  Box,
+  Pagination,
+  PaginationItem,
+  Skeleton,
+  Typography,
+} from "@mui/material";
 import DrugListTable from "../components/ListOfDrugs/DrugListTable";
 
 const ListOfDrugsByGenericName = () => {
   const [errors, setErrors] = useState(false);
   const [drugListByGenericName, setDrugListByGenericName] = useState([]);
+  const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [totalPages, setTotalPages] = useState<number>();
   const { genericName } = useParams();
@@ -23,6 +30,7 @@ const ListOfDrugsByGenericName = () => {
           const list = await getListOfDrugsByGenericName(genericName, page);
           setDrugListByGenericName(list.list);
           setTotalPages(list.totalPages);
+          setCount(list.count);
         }
       } catch (err) {
         setErrors(true);
@@ -43,9 +51,17 @@ const ListOfDrugsByGenericName = () => {
       flexGrow={1}
       gap={3}
     >
+      <Typography>
+        {loading ? (
+          <Skeleton width={300} />
+        ) : (
+          `Total of ${count} searches conducted across various manufacturers.`
+        )}
+      </Typography>
       <Pagination
         page={page}
         count={totalPages}
+        size="small"
         renderItem={(item) => (
           <PaginationItem
             component={Link}
