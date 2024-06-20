@@ -7,6 +7,7 @@ import DrugListTable from "../components/ListOfDrugs/DrugListTable";
 const ListOfDrugsByGenericName = () => {
   const [errors, setErrors] = useState(false);
   const [drugListByGenericName, setDrugListByGenericName] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [totalPages, setTotalPages] = useState<number>();
   const { genericName } = useParams();
 
@@ -17,6 +18,7 @@ const ListOfDrugsByGenericName = () => {
   useEffect(() => {
     const getDrugListByGenericName = async () => {
       try {
+        setLoading(true);
         if (typeof genericName === "string") {
           const list = await getListOfDrugsByGenericName(genericName, page);
           setDrugListByGenericName(list.list);
@@ -24,6 +26,8 @@ const ListOfDrugsByGenericName = () => {
         }
       } catch (err) {
         setErrors(true);
+      } finally {
+        setLoading(false);
       }
     };
     getDrugListByGenericName();
@@ -52,7 +56,10 @@ const ListOfDrugsByGenericName = () => {
           />
         )}
       />
-      <DrugListTable drugListByGenericName={drugListByGenericName} />
+      <DrugListTable
+        drugListByGenericName={drugListByGenericName}
+        loading={loading}
+      />
     </Box>
   );
 };

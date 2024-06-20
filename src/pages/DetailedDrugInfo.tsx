@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDetailedDrugInfo } from "../api/getDetailedDrugInfo";
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, CircularProgress, Paper, Typography } from "@mui/material";
 import { transformDrugData } from "../utils/transformDrugData";
 
 const DetailedDrugInfo = () => {
@@ -36,7 +36,10 @@ const DetailedDrugInfo = () => {
 
   // Comments bellow
   return (
-    <Box display={"flex"} flexDirection={"column"} gap={8}>
+    <Box display={"flex"} flexDirection={"column"} gap={8} minHeight={"100vh"}>
+      {loading && (
+        <CircularProgress sx={{ display: "grid", alignSelf: "center" }} />
+      )}
       {drugInfo &&
         drugInfo.map((item: any) =>
           typeof item.value === "string" ||
@@ -76,7 +79,10 @@ const DetailedDrugInfo = () => {
                   </Typography>
                   {Array.isArray(innerValue.value) &&
                     innerValue.value.map((innerInnerValue: any) => (
-                      <Typography color={"text.secondary"}>
+                      <Typography
+                        sx={{ wordBreak: "break-word" }}
+                        color={"text.secondary"}
+                      >
                         - {innerInnerValue}
                       </Typography>
                     ))}
