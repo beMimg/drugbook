@@ -8,8 +8,10 @@ interface TextBoxProps {
 const TextBox = ({ title, description }: TextBoxProps) => {
   return (
     <Box>
-      <Typography variant="h6">{title}</Typography>
-      <Typography>{description}</Typography>
+      <Typography variant="h6" color={"text.primary"}>
+        {title}
+      </Typography>
+      <Typography color={"text.secondary"}>{description}</Typography>
     </Box>
   );
 };
