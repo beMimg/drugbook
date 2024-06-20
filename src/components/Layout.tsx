@@ -34,8 +34,8 @@ const Layout = () => {
         >
           <Outlet />
         </Container>
+        <Footer />
       </Box>
-      <Footer />
     </ThemeProvider>
   );
 };
