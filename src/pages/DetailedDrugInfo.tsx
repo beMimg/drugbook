@@ -1,8 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDetailedDrugInfo } from "../api/getDetailedDrugInfo";
-import { Box, CircularProgress, Paper, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { transformDrugData } from "../utils/transformDrugData";
+import GoBackButton from "../components/DetailedDrugInfo/GoBackButton";
 
 const DetailedDrugInfo = () => {
   // Let's make sure our drug info is an array so we can dynamicly map through it.
@@ -34,14 +41,15 @@ const DetailedDrugInfo = () => {
     getDrugInfo();
   }, [id]);
 
-  // Comments bellow
+  if (loading) {
+    return <CircularProgress sx={{ display: "grid", alignSelf: "center" }} />;
+  }
+  // Comments bellow component
   return (
-    <Box display={"flex"} flexDirection={"column"} gap={8}>
-      {loading && (
-        <CircularProgress sx={{ display: "grid", alignSelf: "center" }} />
-      )}
-      {drugInfo &&
-        drugInfo.map((item: any) =>
+    drugInfo && (
+      <Box display={"flex"} flexDirection={"column"} gap={8}>
+        <GoBackButton />
+        {drugInfo.map((item: any) =>
           typeof item.value === "string" ||
           (Array.isArray(item.value) && item.value.length === 1) ? (
             <Box
@@ -91,7 +99,8 @@ const DetailedDrugInfo = () => {
             </Box>
           )
         )}
-    </Box>
+      </Box>
+    )
   );
 };
 
