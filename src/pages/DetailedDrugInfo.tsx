@@ -36,7 +36,7 @@ const DetailedDrugInfo = () => {
 
   // Comments bellow
   return (
-    <Box display={"flex"} flexDirection={"column"} gap={8} minHeight={"100vh"}>
+    <Box display={"flex"} flexDirection={"column"} gap={8}>
       {loading && (
         <CircularProgress sx={{ display: "grid", alignSelf: "center" }} />
       )}
