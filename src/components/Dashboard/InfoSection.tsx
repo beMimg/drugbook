@@ -10,18 +10,21 @@ const cardContent = [
     title: "Built for Pharmacists and Healthcare Professionals",
     description:
       "Developed with the needs of pharmacists and healthcare providers in mind, our app offers robust search capabilities, comprehensive drug information, and an intuitive interface. ",
+    index: 0,
   },
   {
     icon: LocalHospitalTwoToneIcon,
     title: "Modern and Intuitive Design",
     description:
       "Experience a clean, modern interface designed to be both aesthetically pleasing and highly functional. Navigate effortlessly through search results and drug details with our user-friendly design.",
+    index: 1,
   },
   {
     icon: FindInPageTwoToneIcon,
     title: "Comprehensive Documentation",
     description:
       "Benefit from our detailed documentation that covers every aspect of the app. From search functionality to detailed drug information, our guides ensure you can make the most out of all features without any hassle.",
+    index: 2,
   },
 ];
 interface InfoSectionProps {
@@ -56,6 +59,7 @@ const InfoSection = ({ isMdAndUp }: InfoSectionProps) => {
       <Grid container spacing={10} direction={isMdAndUp ? "row" : "column"}>
         {cardContent.map((card) => (
           <Card
+            key={card.index}
             icon={card.icon}
             title={card.title}
             description={card.description}

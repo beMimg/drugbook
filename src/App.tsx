@@ -7,6 +7,7 @@ import "@fontsource/roboto/300.css"; // Light font weight
 import "@fontsource/roboto/400.css"; // Regular font weight
 import "@fontsource/roboto/500.css"; // Medium font weight
 import "@fontsource/roboto/700.css"; // Bold font weight
+import About from "./pages/About";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             element={<ListOfDrugsByGenericName />}
           />
           <Route path="/information/:id" element={<DetailedDrugInfo />} />
+          <Route path="/about" element={<About />} />
         </Route>
       </Routes>
     </BrowserRouter>
