@@ -8,7 +8,6 @@ const Footer: React.FC = () => {
       sx={{
         backgroundColor: "background.paper",
         padding: (theme) => theme.spacing(6, 0),
-        marginTop: (theme) => theme.spacing(8),
       }}
     >
       <Container maxWidth="lg">
