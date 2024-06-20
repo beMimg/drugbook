@@ -2,9 +2,11 @@ import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import SearchBar from "./SearchBar";
 import medicineSvg from "../../assets/images/medicine.svg";
 
-const Hero = () => {
-  const theme = useTheme();
-  const isMdAndUp = useMediaQuery(theme.breakpoints.up("md"));
+interface HeroProps {
+  isMdAndUp: Boolean;
+}
+
+const Hero = ({ isMdAndUp }: HeroProps) => {
   return (
     <Grid
       container
@@ -12,6 +14,7 @@ const Hero = () => {
       direction={isMdAndUp ? "row" : "column"}
       alignItems={"center"}
       flexGrow={1}
+      py={6}
     >
       <Grid item md={6}>
         <Box
@@ -27,9 +30,14 @@ const Hero = () => {
             textAlign={"center"}
           >
             Your Gateway to Global{" "}
-            <span style={{ color: theme.palette.secondary.main }}>
+            <Typography
+              component="span"
+              variant={isMdAndUp ? "h3" : "h4"}
+              fontWeight={"bold"}
+              color={"primary.main"}
+            >
               Pharmaceutical
-            </span>{" "}
+            </Typography>{" "}
             Knowledge
           </Typography>
           <Typography

@@ -56,7 +56,7 @@ const SearchBar = () => {
       options={options}
       onChange={handleOptionChange}
       onInputChange={handleInputChange}
-      sx={{ width: "300px" }}
+      sx={{ width: "80%" }}
       loading={loading}
       renderInput={(params) => (
         <TextField

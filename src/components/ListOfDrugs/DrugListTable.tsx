@@ -1,6 +1,4 @@
 import {
-  Box,
-  Link,
   Paper,
   Skeleton,
   Table,
@@ -9,6 +7,8 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  styled,
+  tableCellClasses,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -28,6 +28,26 @@ interface DrugListByGenericNameProp {
   loading: boolean;
 }
 
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  "&:nth-of-type(odd)": {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  "&:last-child td, &:last-child th": {
+    border: 0,
+  },
+}));
+
 const DrugListTable = ({
   drugListByGenericName,
   loading,
@@ -39,16 +59,15 @@ const DrugListTable = ({
     navigate(path);
   };
 
-  console.log(loading);
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: 650 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <TableCell>Generic Name</TableCell>
-            <TableCell align="right">Brand</TableCell>
-            <TableCell align="right">Manufacturer</TableCell>
-            <TableCell align="right">Application Number</TableCell>
+            <StyledTableCell>Generic Name</StyledTableCell>
+            <StyledTableCell align="right">Brand</StyledTableCell>
+            <StyledTableCell align="right">Manufacturer</StyledTableCell>
+            <StyledTableCell align="right">Application Number</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -56,23 +75,23 @@ const DrugListTable = ({
             ? // Render skeleton rows while loading
               Array.from(new Array(5)).map((_, index) => (
                 <TableRow key={index}>
-                  <TableCell component="th" scope="row">
+                  <StyledTableCell component="th" scope="row">
                     <Skeleton />
-                  </TableCell>
-                  <TableCell align="right">
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
                     <Skeleton />
-                  </TableCell>
-                  <TableCell align="right">
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
                     <Skeleton />
-                  </TableCell>
-                  <TableCell align="right">
+                  </StyledTableCell>
+                  <StyledTableCell align="right">
                     <Skeleton />
-                  </TableCell>
+                  </StyledTableCell>
                 </TableRow>
               ))
             : // Render actual data once loading is complete
               drugListByGenericName.map((drug: Drug) => (
-                <TableRow
+                <StyledTableRow
                   key={drug.openfda.spl_id[0]}
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
@@ -98,7 +117,7 @@ const DrugListTable = ({
                       ? drug.openfda.application_number[0]
                       : "N/A"}
                   </TableCell>
-                </TableRow>
+                </StyledTableRow>
               ))}
         </TableBody>
       </Table>
