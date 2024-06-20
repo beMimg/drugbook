@@ -9,16 +9,13 @@ import { Outlet } from "react-router-dom";
 import Footer from "./Footer/Footer";
 import theme from "../theme/theme";
 import HideAppBar from "./Navbar/Nav";
+import ScrollToTop from "./ScrollToTop";
 
 const Layout = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        display="flex"
-        flexDirection="column"
-        minHeight="100vh"
-        height={"100%"}
-      >
+      <ScrollToTop />
+      <Box display="flex" flexDirection="column" minHeight="100vh">
         <HideAppBar />
         <Container
           component="main"
