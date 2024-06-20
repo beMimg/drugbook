@@ -1,4 +1,4 @@
-import { Autocomplete, TextField } from "@mui/material";
+import { Autocomplete, CircularProgress, TextField } from "@mui/material";
 import { useState, useCallback } from "react";
 import { searchDrug } from "../../api/searchDrugs";
 import debounce from "lodash/debounce";
@@ -10,22 +10,26 @@ interface Drug {
 
 const SearchBar = () => {
   const [options, setOptions] = useState<string[]>([]);
-
+  const [loading, setLoading] = useState(false);
   // Used to nagivate thro routers, since we can't directly use Link in the Autocomplete component.
   const navigate = useNavigate();
 
   // value as a string because the input of autocomplete will always be a string.
   const fetchOptions = async (value: string) => {
     // Reduce fetching by requiring more than one character.
-    if (value.length > 1) {
-      const drugsData = await searchDrug(value);
-      // lets map through the drugs data, only if it exists .
-      if (drugsData) {
-        const genericNameData = drugsData.map((drug: Drug) => drug.term); // get the generic name on proprety term, must be a STRING.
-        setOptions(genericNameData);
+    try {
+      if (value.length > 1) {
+        setLoading(true);
+        const drugsData = await searchDrug(value);
+        // lets map through the drugs data, only if it exists .
+        if (drugsData) {
+          const genericNameData = drugsData.map((drug: Drug) => drug.term); // get the generic name on proprety term, must be a STRING.
+          setOptions(genericNameData);
+        }
       }
-    } else {
-      setOptions([]);
+    } catch (err) {
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -53,9 +57,26 @@ const SearchBar = () => {
       onChange={handleOptionChange}
       onInputChange={handleInputChange}
       sx={{ width: "300px" }}
+      loading={loading}
       renderInput={(params) => (
-        <TextField {...params} label="Search" variant="outlined" />
+        <TextField
+          {...params}
+          label="Search"
+          variant="outlined"
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: (
+              <>
+                {loading ? (
+                  <CircularProgress color="inherit" size={20} />
+                ) : null}
+                {params.InputProps.endAdornment}
+              </>
+            ),
+          }}
+        />
       )}
+      loadingText="Loading..."
     />
   );
 };
