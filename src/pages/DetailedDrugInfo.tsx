@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDetailedDrugInfo } from "../api/getDetailedDrugInfo";
-import { Box, List, ListItem, Paper, Typography } from "@mui/material";
-import TextBox from "../components/DetailedDrugInfo/TextBox";
+import { Box, Paper, Typography } from "@mui/material";
 import { transformDrugData } from "../utils/transformDrugData";
 
 const DetailedDrugInfo = () => {
