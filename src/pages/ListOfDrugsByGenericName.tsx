@@ -9,9 +9,10 @@ import {
   Typography,
 } from "@mui/material";
 import DrugListTable from "../components/ListOfDrugs/DrugListTable";
+import Error from "../components/Errors/Error";
 
 const ListOfDrugsByGenericName = () => {
-  const [errors, setErrors] = useState(false);
+  const [error, setError] = useState(false);
   const [drugListByGenericName, setDrugListByGenericName] = useState([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -31,9 +32,10 @@ const ListOfDrugsByGenericName = () => {
           setDrugListByGenericName(list.list);
           setTotalPages(list.totalPages);
           setCount(list.count);
+          setError(false);
         }
       } catch (err) {
-        setErrors(true);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -41,6 +43,10 @@ const ListOfDrugsByGenericName = () => {
     getDrugListByGenericName();
     //name and page as dependency
   }, [genericName, page]);
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <Box

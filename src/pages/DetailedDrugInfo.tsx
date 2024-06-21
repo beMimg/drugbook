@@ -4,12 +4,13 @@ import { getDetailedDrugInfo } from "../api/getDetailedDrugInfo";
 import { Box, CircularProgress, Paper, Typography } from "@mui/material";
 import { transformDrugData } from "../utils/transformDrugData";
 import GoBackButton from "../components/DetailedDrugInfo/GoBackButton";
+import Error from "../components/Errors/Error";
 
 const DetailedDrugInfo = () => {
   // Let's make sure our drug info is an array so we can dynamicly map through it.
   const [drugInfo, setDrugInfo] = useState<Array<any> | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(Boolean);
   const { id } = useParams();
 
   useEffect(() => {
@@ -24,6 +25,9 @@ const DetailedDrugInfo = () => {
             // Check transformDrugData for explanation.
             const drugArray = transformDrugData(data);
             setDrugInfo(drugArray);
+            setError(false);
+          } else {
+            setError(true);
           }
         }
       } catch (err) {
@@ -37,6 +41,10 @@ const DetailedDrugInfo = () => {
 
   if (loading) {
     return <CircularProgress sx={{ display: "grid", alignSelf: "center" }} />;
+  }
+
+  if (error) {
+    return <Error />;
   }
   // Comments bellow component
   return (

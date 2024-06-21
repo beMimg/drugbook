@@ -7,6 +7,7 @@ export const searchDrug = async (query: string) => {
     );
     return response.data.results;
   } catch (err) {
-    console.log(err);
+    console.error(err);
+    throw err;
   }
 };
