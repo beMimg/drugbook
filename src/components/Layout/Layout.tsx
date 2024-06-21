@@ -1,8 +1,8 @@
 import { Box, Container, ThemeProvider } from "@mui/material";
 import { Outlet } from "react-router-dom";
-import Footer from "./Footer/Footer";
-import theme from "../theme/theme";
-import HideAppBar from "./Navbar/Nav";
+import Footer from "../Footer/Footer";
+import theme from "../../theme/theme";
+import HideAppBar from "../Navbar/Nav";
 import ScrollToTop from "./ScrollToTop";
 
 const Layout = () => {
