@@ -1,5 +1,6 @@
 export const transformDrugData = (data: Object) => {
   return Object.entries(data).map(([key, value]) => {
+    // First letter capitalized and replace '_' with spaces in each content section
     let transformedKey = key.replaceAll("_", " ");
     const firstLetterUppercase = transformedKey.charAt(0).toUpperCase();
     const finalKey = firstLetterUppercase + transformedKey.substring(1);

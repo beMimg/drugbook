@@ -11,20 +11,27 @@ interface Drug {
 const SearchBar = () => {
   const [options, setOptions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(Boolean);
   const navigate = useNavigate();
 
   const fetchOptions = async (value: string) => {
     try {
       if (value.length > 1) {
         setLoading(true);
+        setError(false);
         const drugsData = await searchDrug(value);
         if (drugsData) {
           const genericNameData = drugsData.map((drug: Drug) => drug.term);
           setOptions(genericNameData);
+        } else {
+          setOptions([]);
         }
+      } else {
+        // if input value is < 1 remove options
+        setOptions([]);
       }
     } catch (err) {
-      console.error(err);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -74,6 +81,8 @@ const SearchBar = () => {
               </>
             ),
           }}
+          error={error} // Use boolean error state directly
+          helperText={error ? "Failed to fetch options" : ""}
         />
       )}
       loadingText="Loading..."
