@@ -24,8 +24,12 @@ function HideOnScroll(props: Props) {
         <Container maxWidth={"xl"}>
           <Toolbar disableGutters>
             <Box
+              component={Link}
+              to="/"
               display={"flex"}
               flexDirection={"row"}
+              alignItems={"center"}
+              justifyContent={"center"}
               gap={1}
               sx={{
                 flexGrow: 1,
