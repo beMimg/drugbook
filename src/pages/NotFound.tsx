@@ -10,7 +10,11 @@ const NotFound = () => {
       justifyContent={"center"}
       gap={4}
     >
-      <img style={{ maxWidth: "600px" }} src={notFound} alt="not found" />
+      <img
+        style={{ maxWidth: "100%", height: "auto" }}
+        src={notFound}
+        alt="not found"
+      />
       <Typography variant="h4">Page Not Found</Typography>
       <Typography variant="body1">
         <Link to="/" color="primary.main" style={{ textDecoration: "none" }}>
