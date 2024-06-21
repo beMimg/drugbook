@@ -9,6 +9,7 @@ import "@fontsource/roboto/500.css"; // Medium font weight
 import "@fontsource/roboto/700.css"; // Bold font weight
 import About from "./pages/About";
 import SearchResultsForInput from "./pages/SearchResultsForInput";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           />
           <Route path="/information/:id" element={<DetailedDrugInfo />} />
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
