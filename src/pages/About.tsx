@@ -32,6 +32,14 @@ const About = () => {
       >
         https://www.linkedin.com/in/bemimg/
       </Typography>
+      <Typography
+        component={Link}
+        href="https://bemimg.com"
+        target="_blank"
+        fontWeight={500}
+      >
+        https://github.com/beMimg/drugbook
+      </Typography>
     </Box>
   );
 };
