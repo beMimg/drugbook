@@ -9,17 +9,19 @@ interface Drug {
 }
 
 const SearchBar = () => {
-  const [options, setOptions] = useState<string[]>([]);
+  const [options, setOptions] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+  const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState(Boolean);
   const navigate = useNavigate();
+  const fetchLimit = 20;
 
   const fetchOptions = async (value: string) => {
     try {
       if (value.length > 1) {
         setLoading(true);
         setError(false);
-        const drugsData = await searchDrug(value);
+        const drugsData = await searchDrug(value, fetchLimit);
         if (drugsData) {
           const genericNameData = drugsData.map((drug: Drug) => drug.term);
           setOptions(genericNameData);
@@ -36,7 +38,6 @@ const SearchBar = () => {
       setLoading(false);
     }
   };
-
   // Create a debounced version of fetchOptions
   const debounceFetchOptions = useMemo(() => debounce(fetchOptions, 300), []);
 
@@ -47,20 +48,35 @@ const SearchBar = () => {
     };
   }, [debounceFetchOptions]);
 
-  const handleOptionChange = (event: any, value: string | null) => {
-    if (value) {
+  // value can be an option IF the limit of options (20) was reached.
+  const handleOptionChange = (event: any, value: string) => {
+    if (value && value === `See all searches starting with ${inputValue}`) {
+      // if its a custom option used to see all options that start with the input value
+      const path = `/bbb`;
+      navigate(path);
+    } else {
+      // if its a fetched option
       const path = `/list/${value}?page=1`;
       navigate(path);
     }
   };
 
   const handleInputChange = (event: any, value: string) => {
+    setInputValue(value);
     debounceFetchOptions(value);
   };
 
+  const customOptions = [...options]; // Create a copy of options array
+
+  /* If the options length === 20, lets add a new option to the end of the array,
+  This option will be responsible to navigate to a different route and fetch without limits. */
+  if (options.length === fetchLimit) {
+    customOptions.push(`See all searches starting with ${inputValue}`);
+  }
+
   return (
     <Autocomplete
-      options={options}
+      options={customOptions}
       onChange={handleOptionChange}
       onInputChange={handleInputChange}
       sx={{ width: "80%" }}
