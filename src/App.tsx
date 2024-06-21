@@ -8,6 +8,7 @@ import "@fontsource/roboto/400.css"; // Regular font weight
 import "@fontsource/roboto/500.css"; // Medium font weight
 import "@fontsource/roboto/700.css"; // Bold font weight
 import About from "./pages/About";
+import SearchResultsForInput from "./pages/SearchResultsForInput";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
+          <Route path="/search/:input" element={<SearchResultsForInput />} />
           <Route
             path="/list/:genericName"
             element={<ListOfDrugsByGenericName />}

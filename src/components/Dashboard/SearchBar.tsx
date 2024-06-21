@@ -14,7 +14,9 @@ const SearchBar = () => {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState(Boolean);
   const navigate = useNavigate();
+
   const fetchLimit = 20;
+  const customOptionValue = `See top searches starting with '${inputValue}'`;
 
   const fetchOptions = async (value: string) => {
     try {
@@ -50,9 +52,9 @@ const SearchBar = () => {
 
   // value can be an option IF the limit of options (20) was reached.
   const handleOptionChange = (event: any, value: string) => {
-    if (value && value === `See all searches starting with ${inputValue}`) {
+    if (value && value === customOptionValue) {
       // if its a custom option used to see all options that start with the input value
-      const path = `/bbb`;
+      const path = `/search/${inputValue}?page=1`;
       navigate(path);
     } else {
       // if its a fetched option
@@ -67,11 +69,10 @@ const SearchBar = () => {
   };
 
   const customOptions = [...options]; // Create a copy of options array
-
   /* If the options length === 20, lets add a new option to the end of the array,
   This option will be responsible to navigate to a different route and fetch without limits. */
   if (options.length === fetchLimit) {
-    customOptions.push(`See all searches starting with ${inputValue}`);
+    customOptions.push(customOptionValue);
   }
 
   return (
