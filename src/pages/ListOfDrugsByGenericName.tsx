@@ -61,7 +61,7 @@ const ListOfDrugsByGenericName = () => {
         {loading ? (
           <Skeleton width={300} />
         ) : (
-          `Total of ${count} searches conducted across various manufacturers.`
+          `Total of ${count} searches conducted across various brands and manufacturers.`
         )}
       </Typography>
       <Pagination
