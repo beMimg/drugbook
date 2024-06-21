@@ -1,10 +1,4 @@
-import {
-  Box,
-  Container,
-  ThemeProvider,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { Box, Container, ThemeProvider } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer/Footer";
 import theme from "../theme/theme";

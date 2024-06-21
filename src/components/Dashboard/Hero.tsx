@@ -53,7 +53,11 @@ const Hero = ({ isMdAndUp }: HeroProps) => {
         </Box>
       </Grid>
       <Grid item md={6}>
-        <img src={medicineSvg} style={{ maxWidth: "100%", height: "auto" }} />
+        <img
+          src={medicineSvg}
+          alt="Medics"
+          style={{ maxWidth: "100%", height: "auto" }}
+        />
       </Grid>
     </Grid>
   );

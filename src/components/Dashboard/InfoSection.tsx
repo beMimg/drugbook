@@ -27,6 +27,7 @@ const cardContent = [
     index: 2,
   },
 ];
+
 interface InfoSectionProps {
   isMdAndUp: Boolean;
 }

@@ -9,7 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 import DrugListTable from "../components/ListOfDrugs/DrugListTable";
-import GoBackButton from "../components/DetailedDrugInfo/GoBackButton";
 
 const ListOfDrugsByGenericName = () => {
   const [errors, setErrors] = useState(false);

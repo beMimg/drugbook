@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDetailedDrugInfo } from "../api/getDetailedDrugInfo";
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Box, CircularProgress, Paper, Typography } from "@mui/material";
 import { transformDrugData } from "../utils/transformDrugData";
 import GoBackButton from "../components/DetailedDrugInfo/GoBackButton";
 

@@ -1,4 +1,3 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -35,7 +34,11 @@ function HideOnScroll(props: Props) {
                 gap: 1,
               }}
             >
-              <img src={medicinePillsWhite} alt="" style={{ height: "24px" }} />
+              <img
+                src={medicinePillsWhite}
+                alt="Drugbook logo"
+                style={{ height: "24px" }}
+              />
               <Typography
                 variant="h6"
                 component="div"
