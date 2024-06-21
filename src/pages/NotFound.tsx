@@ -1,6 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import notFound from "../assets/images/not_found.svg";
 import { Link } from "react-router-dom";
+
 const NotFound = () => {
   return (
     <Box

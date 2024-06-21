@@ -1,14 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { searchDrug } from "../api/searchDrugs";
 import { Box, CircularProgress, Typography } from "@mui/material";
-
-interface Drug {
-  openfda: {
-    generic_name: string;
-    spl_id: string;
-  };
-}
 
 const SearchResultsForInput = () => {
   const [options, setOptions] = useState<any[]>([]);
@@ -33,7 +26,7 @@ const SearchResultsForInput = () => {
       }
     };
     getFullData();
-  }, []);
+  }, [input]);
 
   if (loading) {
     return <CircularProgress sx={{ display: "grid", alignSelf: "center" }} />;
