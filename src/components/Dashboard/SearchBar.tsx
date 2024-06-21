@@ -54,7 +54,7 @@ const SearchBar = () => {
   const handleOptionChange = (event: any, value: string) => {
     if (value && value === customOptionValue) {
       // if its a custom option used to see all options that start with the input value
-      const path = `/search/${inputValue}?page=1`;
+      const path = `/search/${inputValue}`;
       navigate(path);
     } else {
       // if its a fetched option
