@@ -16,7 +16,7 @@ const SearchBar = () => {
   const navigate = useNavigate();
 
   const fetchLimit = 20;
-  const customOptionValue = `See top searches starting with '${inputValue}'`;
+  const customOptionValue = `See top searches contanining '${inputValue}'`;
 
   const fetchOptions = async (value: string) => {
     try {
